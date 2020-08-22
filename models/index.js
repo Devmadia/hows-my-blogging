@@ -6,9 +6,12 @@ const Comment = require('./Comment');
 and never many users. By this relationship definition, we know we have a 
 one-to-many relationship*/
 
-Post.belongsTo(User, {});
+
 Post.hasMany(Comment, {});
 Comment.belongsTo(User, {});
+
+User.belongsToMany(Post, {});
+Post.belongsTo(User, {});
 
 module.exports = {
     User,
