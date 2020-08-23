@@ -8,7 +8,7 @@ const commentRoutes = require('./comment-routes');
 // this file will serve as a means to collect all of the API routes and package them up
 
 // route for userRoutes
-router.use('/users', userRoutes);
+router.use('/user', userRoutes);
 // route for postRoutes
 router.use('/posts', postRoutes);
 // route for commentRoutes

@@ -41,5 +41,5 @@ app.use(routes);
 
 // drop the tables so the application can re-create them and implement the associations
 sequelize.sync({ force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now listening on POT ${PORT}'));
+    app.listen(PORT, () => console.log('Now listening on PORT ${PORT}'));
 });

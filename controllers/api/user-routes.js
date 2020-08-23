@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection');
+const sequelize = require('../../config/connection.js');
 
 // GET /api/user -- this is equivalent of "SELECT * FROM users;"
 router.get('/', (req, res) => {
