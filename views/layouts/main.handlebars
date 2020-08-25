@@ -31,8 +31,11 @@
             {{{ body }}}
         </main>
         <footer>
-            &copy; How's My Blogging
+            <p>&copy; How's My Blogging</p>
         </footer>
+        {{#if loggedIn}}
+        <script src="/javascript/logout.js"></script>
+        {{/if}} 	    
     </div>
 </body>
 

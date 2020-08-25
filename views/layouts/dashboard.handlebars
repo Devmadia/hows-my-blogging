@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>How's My Blogging</title>
+</head>
+
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <nav>
+            <ul class="flex-row">
+                <li class=""><a href="/">Home</a></li>
+                <li class=""><a href="/dashboard">Dashboard</a></li>
+                <li class=""><a href="#" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+        <h1 class="app-title">Your Dashboard</h1>
+    </header>
+
+    <main class="col-auto">
+    {{{body}}}
+    </main>
+
+    <footer class="flex-row justify-center">
+        <a href="/dashboard/new">New Post</a>
+        <h3>&copy; How's My Blogging</h3>
+    </footer>
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}}
+</body>
+</html> 
