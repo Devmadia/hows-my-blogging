@@ -12,6 +12,17 @@
 <body>
     <div class="wrapper">
         <header>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>Dashboard</li>
+                    {{#if loggedIn}}
+                    <li>Logout</li>
+                    {{else}}
+                    <li>Login</li>
+                    {{/if}}
+                </ul>
+            </nav>
             <h1>
                 <a href="/">How's My Blogging</a>
             </h1>
