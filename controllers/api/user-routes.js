@@ -1,54 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require('../../models');
-const sequelize = require('../../config/connection.js');
-
-// GET /api/user -- this is equivalent of "SELECT * FROM users;"
-router.get('/', (req, res) => {
-    // Access our User model and run .findAll() method)
-    User.findAll({
-      attributes: { exclude: ['password'] }
-    })
-      .then(dbUserData => res.json(dbUserData))
-      .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
-
-// GET /api/user/1 -- this is equivalent of "SELECT * FROM users WHERE id = 1"
-router.get('/:id', (req, res) => {
-    User.findOne({
-        attributes: { exclude: ['password'] },
-        where: {
-            id: req.params.id
-        },
-        include: [
-            {
-            model: Post,
-            attributes: ['id', 'title', 'post_url', 'created_at']
-            },
-            {
-                model      : Comment,
-                attributes : [ 'id', 'comment_text', 'created_at' ],
-                include    : {
-                    model      : Post,
-                    attributes : [ 'title' ]
-                }
-            }
-        ]
-    })
-    .then((dbUserData) => {
-        if (!dbUserData) {
-            res.status(404).json({ message: 'No user found with this id' });
-            return;
-        }
-        res.json(dbUserData);
-    })
-    .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+const { User } = require('../../models');
 
 // POST api/user -- create a user after signing up
 router.post("/", (req, res) => {
@@ -71,29 +22,38 @@ router.post("/", (req, res) => {
     });
 });
 
-// PUT /api/user/1 to update a user by id
-router.put('/:id', (req, res) => {
-    User.update(req.body, {
-        individualHooks: true,
+// POST login
+router.post('/login', (req, res) => {
+    User.findOne({
         where: {
-          id: req.params.id
+            username: req.body.username
         }
     })
-    .then(dbUserData => {
-        if (!dbUserData[0]) {
-            res.status(404).json({ message: 'No user found with this id' });
+    .then((dbUserData) => {
+        if (!dbUserData) {
+            res.status(404).json({ message: 'No user account found!' });
             return;
         }
-        res.json(dbUserData);
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
+
+        const validPassword = dbUserData.checkPassword(req.body.password);
+        if (!validPassword) {
+            res.status(400).json({ message: 'Incorrect password!' });
+            return;
+        }
+
+        req.session.save(() => {
+            // declare session variables
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
+            req.session.loggedIn = true;
+
+            res.json({ user: dbUserData, message: 'You are now logged in!' });
+        });
     });
 });
 
-// DELETE api/user/1 - to delete a user by id reference
-router.delete("/user/:id", (req, res) => {
+// POST logout
+router.delete("/logout", (req, res) => {
     User.destroy({
         where: {
             id: req.params.id
