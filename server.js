@@ -4,22 +4,22 @@ const sequelize = require('./config/connection');
 const path = require('path');
 const session = require('express-session');
 const helpers = require('./utils/helpers');
-
+// handlebars template engine
+const exphbs = require('express-handlebars');
 // handlebars template engine
 const hbs = exphbs.create({ helpers });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// handlebars template engine
-const exphbs = require('express-handlebars');
+
 
 // sequelizestore import
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
   secret: 'Super secret secret',
-  cookie: {},
+  cookie: { maxAge: 3600000 },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({

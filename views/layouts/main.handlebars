@@ -2,41 +2,42 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How's My Blogging</title>
-  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/stylesheets/style.css">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text&display=swap" rel="stylesheet">
+  {{!-- <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet"> --}}
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Text:wght@100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <title>How's My Blogging?</title>
 </head>
 
-<body>
-    <div class="wrapper">
-        <header>
-            <nav>
-                <ul>
-                    <li class="li-inline nav-item"><a href="/">Home</a></li>
-                    <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
-                    {{#if loggedIn}}
-                    <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
-                    {{else}}
-                    <li class="li-inline nav-item"><a href="/login">Login</a></li>
-                    {{/if}}
-                </ul>
-            </nav>
-            <h1>
-                <a href="/">How's My Blogging</a>
-            </h1>
-        </header>
-        <main>
-            {{{ body }}}
-        </main>
-        <footer>
-            <h3>&copy; Devmadia</h3>
-        </footer>
-        {{#if loggedIn}}
-        <script src="/javascript/logout.js"></script>
-        {{/if}} 	    
-    </div>
-</body>
+<body class="flex-column min-100-vh">
+    <header class="hero">
+        <nav>
+            <ul class="flex-row">
+                <li class="li-inline nav-item"><a href="/">Home</a></li>
+                <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
+                {{#if loggedIn}}
+                <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
+                {{else}}
+                <li class="li-inline nav-item"><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+        <h1 class="app-title">How's My Blogging?</h1>
+    </header>
 
+    <main class="col-auto">
+    {{{body}}}
+    </main>
+
+    <footer class="flex-row justify-center">
+        <h3>&copy; Devmadia</h3>
+    </footer>
+    {{#if loggedIn}}
+    <script src="/javascript/logout.js"></script>
+    {{/if}} 
+</body>
 </html>
