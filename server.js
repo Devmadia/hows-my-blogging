@@ -5,6 +5,9 @@ const path = require('path');
 const session = require('express-session');
 const helpers = require('./utils/helpers');
 
+// handlebars template engine
+const hbs = exphbs.create({ helpers });
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -24,17 +27,14 @@ const sess = {
   })
 };
 
-// handlebars template engine
-const hbs = exphbs.create({ helpers });
-
-// handlebars template engine
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session(sess));
+
+// handlebars template engine
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // turn on routes
 app.use(routes);
