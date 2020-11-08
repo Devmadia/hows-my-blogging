@@ -19,25 +19,26 @@
             <ul class="flex-row">
                 <li class="li-inline nav-item"><a href="/">Home</a></li>
                 <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
-                {{#if loggedIn}}
                 <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
-                {{else}}
-                <li class="li-inline nav-item"><a href="/login">Login</a></li>
-                {{/if}}
             </ul>
         </nav>
-        <h1 class="app-title">How's My Blogging?</h1>
+        <h1 class="app-title">Your Dashboard</h1>
     </header>
 
     <main class="col-auto">
     {{{body}}}
     </main>
 
+
+    <div class="mx-5 flex-row justify-center">
+        <a href="/dashboard/new" class="btn"><i class="fas fa-plus mr-2"></i>New Post</a>
+    </div>
     <footer class="flex-row justify-center">
         <h3>&copy; Devmadia</h3>
     </footer>
+
     {{#if loggedIn}}
     <script src="/javascript/logout.js"></script>
-    {{/if}} 
+    {{/if}}
 </body>
 </html>
