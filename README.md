@@ -20,6 +20,8 @@ A CMS-style blog site for developers to publish their blog posts and comment on 
   ## Usage
   Before anything, run the schema.sql file to get MySQL server to create your database through which accounts, posts, and such information is stored. You will need to know and have MySQL installed for this. Unless you are deploying to a webhost, your application will default to http://localhost:3001 for previewing and demonstration purposes.
 
+  Live Deployment: https://sleepy-gorge-23356.herokuapp.com/
+
   ![Demo Shot 1](public/assets/Blogging001.png) ![Demo Shot 2](public/assets/Blogging002.png)
 
   When the application is spun up on a server, it will resemble the following. Users will need to click `Login` and go to the bottom of the form to select `Create Account` to use the website. After an account is created, users will be rerouted to their Dashboard.
